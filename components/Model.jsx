@@ -51,6 +51,7 @@ const Model = ({ cardIndex, open, setOpen }) => {
     setCardData((previousData) => {
       const updatedData = [...previousData];
       updatedData[cardIndex].tags = tags;
+      setOpen(false);
       return updatedData;
     });
   };
