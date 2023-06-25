@@ -19,13 +19,13 @@ const Model = ({ cardIndex, open, setOpen }) => {
     boxShadow: 24,
   };
 
-  useEffect(() => {
-    setCardData((previousData) => {
-      const updatedData = [...previousData];
-      updatedData[cardIndex].tags = tags;
-      return updatedData;
-    });
-  }, [tags]);
+  //   useEffect(() => {
+  //     setCardData((previousData) => {
+  //       const updatedData = [...previousData];
+  //       updatedData[cardIndex].tags = tags;
+  //       return updatedData;
+  //     });
+  //   }, [tags]);
 
   const handleTagChange = (index, tagValue) => {
     setCardData((prevState) => {
@@ -44,12 +44,26 @@ const Model = ({ cardIndex, open, setOpen }) => {
   };
 
   const handleAddNewTag = () => {
-    setTags((prevState) => [...prevState, "Add new tag"]);
+    setTags((prevState) => [...prevState, "new tag"]);
+  };
+
+  const handleAcceptChanges = () => {
+    setCardData((previousData) => {
+      const updatedData = [...previousData];
+      updatedData[cardIndex].tags = tags;
+      return updatedData;
+    });
   };
 
   return (
-    <Modal open={open} onClose={() => setOpen(false)}>
-      <Box sx={{ ...style, width: "680px", background: "#1f1f1f" }}>
+    <Modal sx={{ margin: "18px" }} open={open} onClose={() => setOpen(false)}>
+      <Box
+        sx={{
+          ...style,
+          width: { md: "680px", sm: "600px", xs: "100%" },
+          background: "#1f1f1f",
+        }}
+      >
         <div className="w-full flex flex-col">
           <div className="flex min-h-[480px] justify-start items-start gap-3 p-8">
             {/* new tag button */}
@@ -63,7 +77,7 @@ const Model = ({ cardIndex, open, setOpen }) => {
               </p>
             </button>
             <div className="flex justify-center items-center flex-wrap gap-3">
-              {cardData[cardIndex].tags?.map((tag, index) => {
+              {tags?.map((tag, index) => {
                 return (
                   <div
                     key={index}
@@ -93,10 +107,16 @@ const Model = ({ cardIndex, open, setOpen }) => {
           </div>
           {/* ===> buttons */}
           <div className="w-full h-[70px] flex gap-4 justify-end items-center px-8 border-t-[2px] border-black-off">
-            <button className="text-white-main/70 border-[1px] border-black-off rounded-[4px] px-4 py-2">
+            <button
+              onClick={() => setOpen(false)}
+              className="text-white-main/70 border-[1px] border-black-off rounded-[4px] px-4 py-2"
+            >
               Cancel
             </button>
-            <button className="text-white-main/70 bg-blue-main rounded-[4px] px-5 py-2">
+            <button
+              onClick={handleAcceptChanges}
+              className="text-white-main/70 bg-blue-main rounded-[4px] px-5 py-2"
+            >
               Ok
             </button>
           </div>

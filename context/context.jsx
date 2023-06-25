@@ -2,6 +2,7 @@ import React, { ReactNode, useContext, useState, createContext } from "react";
 import { TemplateTage } from "@/data/data";
 import { CardData } from "@/data/data";
 
+// create context
 const TemplateContext = createContext(null);
 
 export const TemplateContextProvider = ({ children }) => {
@@ -14,10 +15,12 @@ export const TemplateContextProvider = ({ children }) => {
     setCardData,
   };
   return (
+    // provide context
     <TemplateContext.Provider value={valuesToPass}>
       {children}
     </TemplateContext.Provider>
   );
 };
 
+// use context
 export const UseTemplateContext = () => useContext(TemplateContext);

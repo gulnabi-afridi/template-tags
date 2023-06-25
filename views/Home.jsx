@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <div className="w-full">
+      <div className="w-full lg:px-10 px-4 py-16 md:py-0">
         <div className="w-full m-auto max-w-[1100px] min-h-screen flex flex-col gap-8 justify-center items-center">
           {/* ===> search inpurt */}
           <div className="w-[220px] grid grid-cols-[1fr,.3fr] h-[50px] justify-center items-center border-2 bg-black-main border-black-off rounded-[2px]">
@@ -61,12 +61,15 @@ const Home = () => {
           </div>
           {/* =====> template card */}
 
-          <div className="w-full grid grid-cols-2 mt-10">
+          <div className="w-full grid gap-8 md:gap-0 grid-cols-1 md:grid-cols-2 mt-4 md:mt-10">
             {filterProducts.length > 0 ? (
               <>
                 {filterProducts.map((card, index) => {
                   return (
-                    <div className="w-full flex justify-center items-center">
+                    <div
+                      key={index}
+                      className="w-full flex justify-center items-center"
+                    >
                       <Card
                         card={card}
                         cardNo={index}
@@ -80,7 +83,10 @@ const Home = () => {
               <>
                 {cardData?.map((card, index) => {
                   return (
-                    <div className="w-full flex justify-center items-center">
+                    <div
+                      key={index}
+                      className="w-full flex justify-center items-center"
+                    >
                       <Card
                         card={card}
                         cardNo={index}
