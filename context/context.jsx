@@ -1,18 +1,17 @@
-import React, { ReactNode, useContext, useState } from "react";
+import React, { ReactNode, useContext, useState, createContext } from "react";
 import { TemplateTage } from "@/data/data";
-import { createContext } from "vm";
+import { CardData } from "@/data/data";
 
-interface TemContextProvider {
-  children: ReactNode;
-}
+const TemplateContext = createContext(null);
 
-const TemplateContext = createContext();
-
-export const TemplateContextProvider = ({ children }: TemContextProvider) => {
+export const TemplateContextProvider = ({ children }) => {
   const [tags, setTags] = useState(TemplateTage);
+  const [cardData, setCardData] = useState(CardData);
   const valuesToPass = {
     tags,
     setTags,
+    cardData,
+    setCardData,
   };
   return (
     <TemplateContext.Provider value={valuesToPass}>
